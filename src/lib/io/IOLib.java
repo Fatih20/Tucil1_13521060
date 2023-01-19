@@ -18,11 +18,9 @@ public class IOLib {
         }).collect(Collectors.toList());
         ValidationResult<String, List<String>> result = new ValidationResult<String, List<String>>("",
                 Arrays.asList(new String[] {}));
-        if (inputSplitted.size() > 4) {
-            result.message = "Terlalu banyak kartu";
-            return result;
-        } else if (inputSplitted.size() < 4) {
-            result.message = "Terlalu sedikit kartu";
+        if (inputSplitted.size() != 4) {
+            result.message = "24 tuh pakai 4 kartu, bukan " + (inputSplitted.size()) + ".\n"
+                    + "Minimal tahu aturan game 24 lah.";
             return result;
         }
 
@@ -34,7 +32,7 @@ public class IOLib {
         });
 
         if (!allAllowed) {
-            result.message = "Kartu yang anda masukkan tidak valid!";
+            result.message = "Kartu remi tuh ada 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, dan As. Belum hafal jenis kartu udah sok-sokan main 24.";
             return result;
         }
 
