@@ -79,7 +79,7 @@ public class Solution {
         return this.operationOrder;
     }
 
-    static public double operate(double operand1, double operand2, Operator operator) {
+    private double operate(double operand1, double operand2, Operator operator) {
         double result;
         switch (operator) {
             case PLUS:
@@ -120,16 +120,8 @@ public class Solution {
         switch (this.operationOrder) {
             case LEFTRIGHT:
                 double left = operate(operands[0], operands[1], operator[0]);
-                double right = operate(operands[0], operands[1], operator[2]);
+                double right = operate(operands[2], operands[3], operator[2]);
                 result = operate(left, right, operator[1]);
-                if ((int) result == 24) {
-                    ToKeyboard.printMessage("Left Right");
-                    ToKeyboard.printNumber(left);
-                    ToKeyboard.printNumber(right);
-                    ToKeyboard.printNumber(result);
-                    ToKeyboard.printMessage("");
-                }
-
                 break;
             case LEFTFIRST:
                 double firstLeft = operate(operands[0], operands[1], operator[0]);

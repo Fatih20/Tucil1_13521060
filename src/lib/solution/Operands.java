@@ -1,5 +1,7 @@
 package lib.solution;
 
+import lib.io.ToKeyboard;
+
 public class Operands {
     private double operand1;
     private double operand2;
@@ -15,6 +17,13 @@ public class Operands {
 
     public double[] getContent() {
         return new double[] { this.operand1, this.operand2, this.operand3, this.operand4 };
+    }
+
+    public void printContent() {
+        ToKeyboard.printNumber(this.operand1);
+        ToKeyboard.printNumber(this.operand2);
+        ToKeyboard.printNumber(this.operand3);
+        ToKeyboard.printNumber(this.operand4);
     }
 
 }

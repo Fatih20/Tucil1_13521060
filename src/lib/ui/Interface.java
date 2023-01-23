@@ -36,7 +36,7 @@ public class Interface {
 
             // Ask if player would like to play again
             String continueAnswer = FromKeyboard.readString("Masukkan 'Y' untuk bermain lagi: ");
-            if (continueAnswer.compareTo("Y") != 0) {
+            if (continueAnswer.toUpperCase().compareTo("Y") != 0) {
                 programRunning = false;
             }
             ToKeyboard.printMessage("");
