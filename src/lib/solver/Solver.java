@@ -36,6 +36,7 @@ public class Solver {
 
         for (int i = 0; i < 4; i++) {
             translatedCards.add(cardValues.get(givenCards.get(i)));
+            ToKeyboard.printNumber(cardValues.get(givenCards.get(i)));
         }
 
         List<Operands> operandPermutation = new ArrayList<Operands>();
@@ -84,12 +85,13 @@ public class Solver {
                     possibleSolutions.add(new Solution(operands, operators, operationOrder));
                 }
             }
-
         }
 
         for (Solution solution : possibleSolutions) {
             if (solution.getValue() == 24) {
-                result.add(solution.getString());
+
+                // ToKeyboard.printMessage(solution.getString());
+                // result.add(solution.getString());
             }
         }
 
