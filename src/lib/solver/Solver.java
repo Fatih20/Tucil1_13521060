@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import lib.io.ToKeyboard;
 import lib.solution.Operands;
@@ -16,7 +18,7 @@ import lib.solution.Solution.Operator;
 
 public class Solver {
 
-    static public Set<String> Solve(List<String> givenCards) {
+    static private List<Operands> operandsMaker(List<String> givenCards) {
         HashMap<String, Double> cardValues = new HashMap<String, Double>();
         cardValues.put("2", 2.0);
         cardValues.put("3", 3.0);
@@ -39,7 +41,6 @@ public class Solver {
         }
 
         List<Operands> operandPermutation = new ArrayList<Operands>();
-        List<Operators> operatorPermutation = new ArrayList<Operators>();
 
         List<Double> remainingCards = new ArrayList<Double>(translatedCards);
         for (int i = 0; i < 4; i++) {
@@ -62,7 +63,11 @@ public class Solver {
 
             }
         }
+        return operandPermutation;
+    }
 
+    static private List<Operators> operatorsMaker() {
+        List<Operators> operatorPermutation = new ArrayList<Operators>();
         Operator[] operatorArray = Operator.values();
 
         for (Operator operator1 : operatorArray) {
@@ -72,11 +77,27 @@ public class Solver {
                 }
             }
         }
+        return operatorPermutation;
+    }
 
+    static private boolean checkIfDuplicate(List<Solution> solutions, Solution checkedSolution) {
+        for (Solution solution : solutions) {
+            if (checkedSolution.isIdentical(solution)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static private List<Solution> checker(List<String> givenCards) {
         OperationOrder[] operationOrderArray = OperationOrder.values();
 
         List<Solution> possibleSolutions = new ArrayList<Solution>();
-        Set<String> result = new HashSet<String>();
+        List<Solution> result = new ArrayList<Solution>();
+        // Set<String> result = new HashSet<String>();
+
+        List<Operands> operandPermutation = operandsMaker(givenCards);
+        List<Operators> operatorPermutation = operatorsMaker();
 
         for (Operands operands : operandPermutation) {
             for (Operators operators : operatorPermutation) {
@@ -87,13 +108,17 @@ public class Solver {
         }
 
         for (Solution solution : possibleSolutions) {
-            if (solution.getValue() == 24) {
-                result.add(solution.getString());
+            if (solution.getValue() == 24 && !checkIfDuplicate(result, solution)) {
+                result.add(solution);
             }
         }
 
         return result;
+    }
 
+    static public List<String> solve(List<String> givenCards) {
+        List<Solution> solutions = checker(givenCards);
+        return solutions.stream().map(solution -> solution.getString()).collect(Collectors.toList());
     }
 
 }

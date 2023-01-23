@@ -79,6 +79,25 @@ public class Solution {
         return this.operationOrder;
     }
 
+    public boolean isIdentical(Solution solution) {
+        if (this.operands.isSame(solution.getOperand()) && this.operator.isSame(solution.getOperator())
+                && this.operationOrder == solution.operationOrder) {
+            return true;
+        }
+
+        if (this.operands.isReverse(solution.getOperand())) {
+            if (this.operationOrder == OperationOrder.LEFTFIRST
+                    && solution.operationOrder == OperationOrder.RIGHTFIRST) {
+                return true;
+            } else if (this.operationOrder == OperationOrder.RIGHTFIRST
+                    && solution.operationOrder == OperationOrder.LEFTFIRST) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     static public double operate(double operand1, double operand2, Operator operator) {
         double result;
         switch (operator) {

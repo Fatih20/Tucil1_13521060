@@ -26,4 +26,30 @@ public class Operands {
         ToKeyboard.printNumber(this.operand4);
     }
 
+    public boolean isReverse(Operands operands) {
+        double[] ourContent = this.getContent();
+        double[] theirContent = operands.getContent();
+
+        for (int i = 0; i < 4; i++) {
+            if (ourContent[i] != theirContent[theirContent.length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public boolean isSame(Operands operands) {
+        double[] ourContent = this.getContent();
+        double[] theirContent = operands.getContent();
+
+        for (int i = 0; i < 4; i++) {
+            if (ourContent[i] != theirContent[i]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 }

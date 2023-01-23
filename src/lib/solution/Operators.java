@@ -17,4 +17,30 @@ public class Operators {
         return new Operator[] { this.operator1, this.operator2, this.operator3 };
     }
 
+    public boolean isSame(Operators operators) {
+        Operator[] ourContent = this.getContent();
+        Operator[] theirContent = operators.getContent();
+
+        for (int i = 0; i < 3; i++) {
+            if (ourContent[i] != theirContent[i]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public boolean isReverse(Operators operators) {
+        Operator[] ourContent = this.getContent();
+        Operator[] theirContent = operators.getContent();
+
+        for (int i = 0; i < 3; i++) {
+            if (ourContent[i] != theirContent[theirContent.length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 }

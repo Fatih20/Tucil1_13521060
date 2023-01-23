@@ -29,7 +29,9 @@ public class Interface {
             } while (!inputCorrect);
 
             // Compute and print out solution
-            Set<String> result = Solver.Solve(validationResult.cards);
+            // Set<String> result = Solver.Solve(validationResult.cards);
+            List<String> result = Solver.solve(validationResult.cards);
+            ToKeyboard.printMessage(String.format("Ditemukan %d solusi.\n", result.size()));
             for (String solution : result) {
                 ToKeyboard.printMessage(solution);
             }
