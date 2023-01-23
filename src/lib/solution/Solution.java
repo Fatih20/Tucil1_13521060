@@ -79,7 +79,7 @@ public class Solution {
         return this.operationOrder;
     }
 
-    private double operate(double operand1, double operand2, Operator operator) {
+    static public double operate(double operand1, double operand2, Operator operator) {
         double result;
         switch (operator) {
             case PLUS:
@@ -141,7 +141,7 @@ public class Solution {
             case MIDDLERIGHT:
                 double middleRight = operate(operands[1], operands[2], operator[1]);
                 double rightmost = operate(middleRight, operands[3], operator[2]);
-                result = operate(rightmost, operands[0], operator[0]);
+                result = operate(operands[0], rightmost, operator[0]);
                 break;
         }
         return (int) Math.round(result);
