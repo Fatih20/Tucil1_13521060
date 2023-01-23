@@ -54,7 +54,7 @@ public class Solution {
         this.operands = operands;
     }
 
-    public void setOperator(Operators operator) throws IncorrectNumberOfOperator {
+    public void setOperator(Operators operator) {
 
         this.operator = operator;
     }
@@ -87,6 +87,20 @@ public class Solution {
                 return true;
             } else if (this.operationOrder == OperationOrder.RIGHTFIRST
                     && solution.operationOrder == OperationOrder.LEFTFIRST) {
+                return true;
+            }
+        }
+
+        if (this.operationOrder == OperationOrder.RIGHTFIRST && solution.operationOrder == OperationOrder.MIDDLELEFT) {
+            if (this.operands.isShifted(solution.getOperand(), false)
+                    && this.operator.isShifted(solution.getOperator(), false)) {
+                return true;
+            }
+        }
+
+        if (this.operationOrder == OperationOrder.LEFTFIRST && solution.operationOrder == OperationOrder.MIDDLERIGHT) {
+            if (this.operands.isShifted(solution.getOperand(), false)
+                    && this.operator.isShifted(solution.getOperator(), false)) {
                 return true;
             }
         }

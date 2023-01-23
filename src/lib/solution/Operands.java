@@ -1,6 +1,7 @@
 package lib.solution;
 
 import lib.io.ToKeyboard;
+import lib.solution.Solution.Operator;
 
 public class Operands {
     private double operand1;
@@ -45,6 +46,27 @@ public class Operands {
 
         for (int i = 0; i < 4; i++) {
             if (ourContent[i] != theirContent[i]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    /**
+     * @param operators
+     * @param left
+     * @return Apakah operand ini merupakan operand yang diberikan yang
+     *         di-shift sesuai parameter
+     * 
+     */
+    public boolean isShifted(Operands operands, boolean left) {
+        int increment = left ? -1 : 1;
+        double[] ourContent = this.getContent();
+        double[] theirContent = operands.getContent();
+
+        for (int i = 0; i < 4; i++) {
+            if (ourContent[i] != theirContent[Math.floorMod(i + increment, 4)]) {
                 return false;
             }
         }

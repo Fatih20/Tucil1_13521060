@@ -43,4 +43,25 @@ public class Operators {
 
     }
 
+    /**
+     * @param operators
+     * @param left
+     * @return Apakah operator ini merupakan operator yang diberikan yang
+     *         di-shift sesuai parameter
+     * 
+     */
+    public boolean isShifted(Operators operators, boolean left) {
+        int increment = left ? -1 : 1;
+        Operator[] ourContent = this.getContent();
+        Operator[] theirContent = operators.getContent();
+
+        for (int i = 0; i < 3; i++) {
+            if (ourContent[i] != theirContent[Math.floorMod(i + increment, 3)]) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 }
