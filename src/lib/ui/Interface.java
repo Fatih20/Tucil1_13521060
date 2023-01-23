@@ -1,6 +1,7 @@
 package lib.ui;
 
 import java.util.List;
+import java.util.Set;
 
 import lib.io.FromKeyboard;
 import lib.io.ToKeyboard;
@@ -28,13 +29,13 @@ public class Interface {
             } while (!inputCorrect);
 
             // Compute and print out solution
-            List<String> result = Solver.Solve(validationResult.cards);
+            Set<String> result = Solver.Solve(validationResult.cards);
             for (String solution : result) {
                 ToKeyboard.printMessage(solution);
             }
 
             // Ask if player would like to play again
-            String continueAnswer = FromKeyboard.readString("Masukkan 'Y' untuk bermain lagi:");
+            String continueAnswer = FromKeyboard.readString("Masukkan 'Y' untuk bermain lagi: ");
             if (continueAnswer.compareTo("Y") != 0) {
                 programRunning = false;
             }

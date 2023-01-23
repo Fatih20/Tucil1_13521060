@@ -3,6 +3,7 @@ package lib.solver;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import lib.solution.Solution.Operator;
 
 public class Solver {
 
-    static public List<String> Solve(List<String> givenCards) {
+    static public Set<String> Solve(List<String> givenCards) {
         HashMap<String, Double> cardValues = new HashMap<String, Double>();
         cardValues.put("2", 2.0);
         cardValues.put("3", 3.0);
@@ -75,7 +76,7 @@ public class Solver {
         OperationOrder[] operationOrderArray = OperationOrder.values();
 
         List<Solution> possibleSolutions = new ArrayList<Solution>();
-        List<String> result = new ArrayList<String>();
+        Set<String> result = new HashSet<String>();
 
         for (Operands operands : operandPermutation) {
             for (Operators operators : operatorPermutation) {
