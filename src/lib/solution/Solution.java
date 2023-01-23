@@ -128,9 +128,9 @@ public class Solution {
                 result = operate(nextLeft, operands[3], operator[2]);
                 break;
             case RIGHTFIRST:
-                double firstRight = operate(operands[2], operands[3], operator[3]);
-                double nextRight = operate(operands[1], firstRight, operator[2]);
-                result = operate(operands[0], nextRight, operator[1]);
+                double firstRight = operate(operands[2], operands[3], operator[2]);
+                double nextRight = operate(operands[1], firstRight, operator[1]);
+                result = operate(operands[0], nextRight, operator[0]);
                 break;
             case MIDDLELEFT:
                 double middleLeft = operate(operands[1], operands[2], operator[1]);
@@ -139,7 +139,7 @@ public class Solution {
                 break;
             case MIDDLERIGHT:
                 double middleRight = operate(operands[1], operands[2], operator[1]);
-                double rightmost = operate(middleRight, operands[3], operator[3]);
+                double rightmost = operate(middleRight, operands[3], operator[2]);
                 result = operate(rightmost, operands[0], operator[0]);
                 break;
         }
