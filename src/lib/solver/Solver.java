@@ -81,12 +81,13 @@ public class Solver {
     }
 
     static private boolean checkIfDuplicate(List<Solution> solutions, Solution checkedSolution) {
-        for (Solution solution : solutions) {
-            if (checkedSolution.isIdentical(solution)) {
-                return true;
-            }
-        }
         return false;
+        // for (Solution solution : solutions) {
+        // if (checkedSolution.isIdentical(solution)) {
+        // return true;
+        // }
+        // }
+        // return false;
     }
 
     static private List<Solution> checker(List<String> givenCards) {
@@ -108,7 +109,7 @@ public class Solver {
         }
 
         for (Solution solution : possibleSolutions) {
-            if (solution.getValue() == 24 && !checkIfDuplicate(result, solution)) {
+            if (solution.compareValue(24.0) && !checkIfDuplicate(result, solution)) {
                 result.add(solution);
             }
         }

@@ -120,7 +120,7 @@ public class Solution {
         return result;
     }
 
-    public int getValue() {
+    public double getValue() {
         double result = 0;
         double[] operands = this.operands.getContent();
         Operator[] operator = this.operator.getContent();
@@ -163,7 +163,12 @@ public class Solution {
                 result = operate(operands[0], rightmost, operator[0]);
                 break;
         }
-        return (int) Math.round(result);
+
+        return result;
+    }
+
+    public boolean compareValue(double value) {
+        return Math.abs(this.getValue() - value) <= 1 / 170;
     }
 
     public String getString() {
