@@ -1,9 +1,5 @@
 package lib.solution;
 
-import lib.io.ToKeyboard;
-import lib.solution.Errors.IncorrectNumberOfOperand;
-import lib.solution.Errors.IncorrectNumberOfOperator;
-
 public class Solution {
     private Operands operands;
     private Operators operator;
@@ -85,7 +81,7 @@ public class Solution {
             return true;
         }
 
-        if (this.operands.isReverse(solution.getOperand())) {
+        if (this.operands.isReverse(solution.getOperand()) && this.operator.isSame(solution.getOperator())) {
             if (this.operationOrder == OperationOrder.LEFTFIRST
                     && solution.operationOrder == OperationOrder.RIGHTFIRST) {
                 return true;
