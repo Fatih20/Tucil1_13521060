@@ -1,6 +1,9 @@
 package lib.ui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import lib.io.FromKeyboard;
@@ -14,25 +17,39 @@ public class Interface {
     static public void mainEventLoop() {
         Boolean programRunning = true;
         double target = 24.0;
+        Random rand = new Random();
+        String[] cards = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
         while (programRunning) {
             Boolean inputCorrect = false;
-            ValidationResult<String, List<String>> validationResult;
-            do {
-                ToKeyboard.printMessage("Masukkan kartu-kartu yang digunakan :");
-                // Menerima kartu yang digunakan
-                String inputRaw = FromKeyboard.readString();
-                validationResult = IOLib.inputValidator(inputRaw);
-                if (validationResult.message.compareTo("") != 0) {
-                    ToKeyboard.printMessage(validationResult.message);
-                } else {
-                    inputCorrect = true;
-                }
+            boolean isRandom = FromKeyboard.readString("Randomisasi kartu? (Y/n) ").toUpperCase().compareTo("Y") == 0;
+            List<String> givenCards;
+            if (!isRandom) {
+                ValidationResult<String, List<String>> validationResult;
+                do {
+                    ToKeyboard.printMessage("Masukkan kartu-kartu yang digunakan :");
+                    // Menerima kartu yang digunakan
+                    String inputRaw = FromKeyboard.readString();
+                    validationResult = IOLib.inputValidator(inputRaw);
+                    if (validationResult.message.compareTo("") != 0) {
+                        ToKeyboard.printMessage(validationResult.message);
+                    } else {
+                        inputCorrect = true;
+                    }
+                } while (!inputCorrect);
+                givenCards = validationResult.cards;
+            } else {
+                givenCards = Arrays.asList(cards[rand.nextInt(13)], cards[rand.nextInt(13)],
+                        cards[rand.nextInt(13)], cards[rand.nextInt(13)]);
+                ToKeyboard.printMessage("Kartu yang dihasilkan acak :");
+                System.out.format("%s %s %s %s", givenCards.get(0), givenCards.get(1), givenCards.get(2),
+                        givenCards.get(3));
+                ToKeyboard.printMessage("");
 
-            } while (!inputCorrect);
+            }
 
             // Hitung dan cetak solusi
             long startTime = System.currentTimeMillis();
-            Set<String> result = Solver.solve(validationResult.cards, target);
+            Set<String> result = Solver.solve(givenCards, target);
             long endTime = System.currentTimeMillis();
 
             ToKeyboard.printMessage(
