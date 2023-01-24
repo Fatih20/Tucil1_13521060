@@ -85,5 +85,5 @@ Program diasumsikan telah berjalan sesuai cara yang telah dijelaskan di bagian s
 
 1. Masukkan komposisi kartu permainan 24 dengan dipisahkan oleh spasi.
 2. Tekan enter.
-3. Setelah solusi dan waktu penghitungan solusi muncul, program akan menyimpan solusi ke dalam file yang namanya berasal dari masukan pengguna, jika diminta oleh pengguna. File yang disimpan ada di dalam folder result dengan format txt.
+3. Setelah solusi dan waktu penghitungan solusi muncul, program akan menyimpan solusi ke dalam file yang namanya berasal dari masukan pengguna, jika diminta oleh pengguna. File yang disimpan ada di dalam folder test dengan format txt.
 4. Pengguna mendapat opsi untuk bermain lagi atau keluar.
