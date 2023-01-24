@@ -1,31 +1,32 @@
-# Tucil 1 Strategi Algoritma [13521060]
+# Tucil 1 Strategi Algoritma <a href="https://github.com/Fatih20">13521060</a>
 
 ## Table of contents
 
 - <a href="#description">Deskripsi</a>
-- <a href="#how-to-run">Cara Menggunakan Program</a>
+- <a href="#how-to-run">Cara Menjalankan Program</a>
+- <a href="#how-to-operate">Petunjuk Penggunaan</a>
 
 <h2 id="description">Deskripsi</h2>
 Tugas besar ini adalah program untuk memecahkan permainan 24 menggunakan algoritma <em>brute-force</em>. Berikut adalah <a href="doc/Algeo01-13521045.pdf">file laporan</a>.
 
-<h2 id="how-to-run">Cara Menggunakan Program</h2>
+<h2 id="how-to-run">Cara Menjalankan Program</h2>
 
 ### _Compile_
 
-_Compile_ program Java bisa dilakukan dengan cara:
+_Compile_ program :
 
 ```bash
 sh compile.sh
 ```
 
-Atau, untuk _compile_ program ke bytecode saja di folder bin bisa dengan:
+_Compile_ program hanya ke bytecode :
 
 ```bash
 cd src
 javac -d ../bin ./*.java
 ```
 
-Lalu, untuk _compile_ hasil bytecode ke file .jar di folder bin bisa dengan:
+_Compile_ hasil bytecode ke file .jar :
 
 ```bash
 cd bin
@@ -34,17 +35,17 @@ jar -cvfm matrix.jar ../src/META-INF/MANIFEST.MF *
 
 ### _Run_
 
-Untuk menjalankan program yang telah di-_compile_, bisa dengan menjalankan file .jar ataupun bytecode.
+File .jar maupun bytecode hasil kompilasi dapat dijalankan.
 
 #### Bytecode
 
-Untuk menjalankan program dari bytecode bisa dengan:
+Jalankan bytecode dengan perintah berikut :
 
 ```bash
 sh run.sh
 ```
 
-Atau
+Atau berikut :
 
 ```
 cd bin
@@ -53,15 +54,33 @@ java Main
 
 #### File .jar
 
-Sedangkan untuk menjalankan program dari file .jar bisa dengan:
+Jalankan file .jar dengan perintah berikut :
 
 ```bash
 sh runJar.sh
 ```
 
-atau
+Atau berikut :
 
 ```bash
 cd bin
 java -jar matrix.jar
 ```
+
+### _Compile and Run_
+
+Program juga dapat di-compile dan langsung di-run hasil kompilasinya menggunakan perintah berikut :
+
+```bash
+sh compileAndRun.sh
+```
+
+Berguna dalam proses pengembangan yang mengharuskan pengecekan tiap kali ada fungsionalitas baru yang ditambahkan.
+
+<h2 id="how-to-operate">Petunjuk Penggunaan</h2>
+Program diasumsikan telah berjalan sesuai cara yang telah dijelaskan di bagian sebelumnya.
+
+1. Masukkan komposisi kartu permainan 24 dengan dipisahkan oleh spasi.
+2. Tekan enter.
+3. Setelah solusi dan waktu penghitungan solusi muncul, program akan menyimpan solusi ke dalam file jika diminta.
+4. Pengguna mendapat opsi untuk bermain lagi atau keluar.
