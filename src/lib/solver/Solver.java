@@ -94,7 +94,8 @@ public class Solver {
         for (Operands operands : operandPermutation) {
             for (Operators operators : operatorPermutation) {
                 for (OperationOrder operationOrder : operationOrderArray) {
-                    Solution possibleSolution = new Solution(operands, operators, operationOrder);
+                    Solution possibleSolution = new Solution(operands, operators,
+                            operationOrder);
                     if (possibleSolution.compareValue(target)) {
                         possibleSolutions.add(possibleSolution.getString());
                     }

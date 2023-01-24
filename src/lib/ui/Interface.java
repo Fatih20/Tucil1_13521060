@@ -48,7 +48,7 @@ public class Interface {
             if (continueAnswer.toUpperCase().compareTo("Y") != 0) {
                 if (continueAnswer.toUpperCase().compareTo("24") == 0) {
                     ToKeyboard.printMessage("Anda telah kembali ke mode 24");
-                    target = 69.0;
+                    target = 24.0;
                 } else if (continueAnswer.toUpperCase().compareTo("69") == 0) {
                     ToKeyboard.printMessage("Anda memasuki mode rahasia 69! Bisa ditebak apa yang dilakukan mode ini.");
                     target = 69.0;
