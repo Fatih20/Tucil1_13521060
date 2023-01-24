@@ -75,39 +75,14 @@ public class Solution {
         return this.operationOrder;
     }
 
-    public boolean isIdentical(Solution solution) {
-        if (this.operands.isSame(solution.getOperand()) && this.operator.isSame(solution.getOperator())
-                && this.operationOrder == solution.operationOrder) {
-            return true;
-        }
-
-        if (this.operands.isReverse(solution.getOperand()) && this.operator.isSame(solution.getOperator())) {
-            if (this.operationOrder == OperationOrder.LEFTFIRST
-                    && solution.operationOrder == OperationOrder.RIGHTFIRST) {
-                return true;
-            } else if (this.operationOrder == OperationOrder.RIGHTFIRST
-                    && solution.operationOrder == OperationOrder.LEFTFIRST) {
-                return true;
-            }
-        }
-
-        if (this.operationOrder == OperationOrder.RIGHTFIRST && solution.operationOrder == OperationOrder.MIDDLELEFT) {
-            if (this.operands.isShifted(solution.getOperand(), false)
-                    && this.operator.isShifted(solution.getOperator(), false)) {
-                return true;
-            }
-        }
-
-        if (this.operationOrder == OperationOrder.LEFTFIRST && solution.operationOrder == OperationOrder.MIDDLERIGHT) {
-            if (this.operands.isShifted(solution.getOperand(), false)
-                    && this.operator.isShifted(solution.getOperator(), false)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    /**
+     * Mengoperasikan operand sesuai dengan operator masukan
+     * 
+     * @param operand1
+     * @param operand2
+     * @param operator
+     * @return hasil operasi
+     */
     static public double operate(double operand1, double operand2, Operator operator) {
         double result;
         switch (operator) {
@@ -130,6 +105,11 @@ public class Solution {
         return result;
     }
 
+    /**
+     * Mendapatkan nilai solusi jika dihitung
+     * 
+     * @return nilai solusi
+     */
     public double getValue() {
         double result = 0;
         double[] operands = this.operands.getContent();
@@ -177,10 +157,22 @@ public class Solution {
         return result;
     }
 
+    /**
+     * Apakah value dari solusi sama dengan value yang dimasukkan dengan
+     * memperhitungkan error floating point
+     * 
+     * @param value
+     * @return apakah value solusi sama dengan value masukan
+     */
     public boolean compareValue(double value) {
         return Math.abs(this.getValue() - value) <= 1 / 170;
     }
 
+    /**
+     * Menghasilkan string representasi solusi
+     * 
+     * @return string yang merepresentasikan solusi dalam notasi infix
+     */
     public String getString() {
         String stringFormat = "";
         double[] operands = this.operands.getContent();

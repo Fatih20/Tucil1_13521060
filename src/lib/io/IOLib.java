@@ -7,12 +7,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class IOLib {
+    /**
+     * Memvalidasi kartu masukan pengguna
+     * 
+     * @param inputRaw input kartu mentah dari pengguna
+     * @return apakah input yang diberikan valid
+     */
     static public ValidationResult<String, List<String>> inputValidator(String inputRaw) {
         Set<String> allowedChar = new HashSet<String>();
         allowedChar.addAll(
                 Arrays.asList(new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" }));
 
-        // Input splitted are input with extra whitespace ignored
+        // Input splitted adalah input dengan tambahan whitespace diabaikan
         List<String> inputSplitted = Arrays.asList(inputRaw.toUpperCase().split(" ")).stream().filter(card -> {
             return card.compareTo("") != 0;
         }).collect(Collectors.toList());
@@ -24,6 +30,7 @@ public class IOLib {
             return result;
         }
 
+        // Mengecek apakah ada yang bukan kartu remi
         Boolean allAllowed = true;
         for (int i = 0; i < inputSplitted.size(); i++) {
             allAllowed = allAllowed && allowedChar.contains(inputSplitted.get(i));

@@ -14,6 +14,12 @@ import lib.solution.Solution.Operator;
 
 public class Solver {
 
+    /**
+     * Menghasilkan permutasi urutan kartu dalam givenCards
+     * 
+     * @param givenCards
+     * @return permutasi givenCards
+     */
     static private List<Operands> operandsMaker(List<String> givenCards) {
         HashMap<String, Double> cardValues = new HashMap<String, Double>();
         cardValues.put("A", 1.0);
@@ -62,6 +68,11 @@ public class Solver {
         return operandPermutation;
     }
 
+    /**
+     * Menghasilkan permutasi array operator beranggotakan 3 yang mungkin
+     * 
+     * @return permutasi array operator beranggotakan 3 yang mungkin
+     */
     static private List<Operators> operatorsMaker() {
         List<Operators> operatorPermutation = new ArrayList<Operators>();
         Operator[] operatorArray = Operator.values();
@@ -76,17 +87,19 @@ public class Solver {
         return operatorPermutation;
     }
 
+    /**
+     * Menghasilkan set berisi string semua solusi yang mungkin
+     * 
+     * @param givenCards list kartu yang dipakai
+     * @param target     nilai yang ingin dicapai
+     * @return set berisi semua solusi yang memenuhi
+     */
     static public Set<String> solve(List<String> givenCards, double target) {
         List<OperationOrder> operationOrderArray = Arrays.asList(OperationOrder.values());
 
         Set<String> possibleSolutions = new HashSet<String>();
-        // Set<String> result = new HashSet<String>();
-
-        // long startOPRPerm = System.currentTimeMillis();
         List<Operands> operandPermutation = operandsMaker(givenCards);
-        // long endOPRPerm = System.currentTimeMillis();
         List<Operators> operatorPermutation = operatorsMaker();
-        // long endOPPerm = System.currentTimeMillis();
 
         for (Operands operands : operandPermutation) {
             for (Operators operators : operatorPermutation) {
@@ -100,17 +113,7 @@ public class Solver {
             }
         }
 
-        // long endSolPerm = System.currentTimeMillis();
-
-        // ToKeyboard.printNumber(endOPRPerm - startOPRPerm, "Operands Permutation ");
-        // ToKeyboard.printNumber(endOPPerm - endOPRPerm, "Operator Permutation ");
-        // ToKeyboard.printNumber(endSolPerm - endOPPerm, "Solution Permutation ");
-
         return possibleSolutions;
-    }
-
-    static public Set<String> solve(List<String> givenCards) {
-        return solve(givenCards, 24.0);
     }
 
 }

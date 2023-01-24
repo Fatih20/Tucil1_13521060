@@ -5,6 +5,11 @@ import java.util.Scanner;
 public class FromKeyboard {
     static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Membaca string dari masukan pengguna
+     * 
+     * @return input dari pengguna dalam string
+     */
     static public String readString() {
         String input = scanner.nextLine();
         return input;

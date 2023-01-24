@@ -1,15 +1,15 @@
 package lib.io;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ToFile {
 
+    /**
+     * Status pemenuhan request pembuatan file, apakah file sudah ada, sudah
+     * berhasil dibuat, atau terdapat error lain.
+     */
     static public class CreateFileCondition {
         private boolean createFileSuccessful;
         private boolean fileAlreadyExists;
@@ -49,6 +49,13 @@ public class ToFile {
 
     }
 
+    /**
+     * Mencoba membuat file dan mengembalikan status pembuatannya (apakah berhasil,
+     * error, dsb.)
+     * 
+     * @param filename nama file yang dibuat
+     * @return status permintaan pembuatan file
+     */
     private static CreateFileCondition createFileSuccessful(String filename) {
         CreateFileCondition createFileCondition = new CreateFileCondition();
         try {
@@ -59,12 +66,18 @@ public class ToFile {
                 createFileCondition.setFileExists();
             }
         } catch (IOException e) {
+            ToKeyboard.printMessage(e.getMessage());
         }
         return createFileCondition;
     }
 
+    /**
+     * Meminta nama file yang valid dan bisa dibuat dari pengguna
+     * 
+     * @return
+     */
     private static String getValidFilename() {
-        String filename = FromKeyboard.readString();
+        String filename = "../result/" + FromKeyboard.readString() + ".txt";
         CreateFileCondition createFileCondition = createFileSuccessful(filename);
         while (!createFileCondition.isSuccessful()) {
             String errorMessage = "";
@@ -84,6 +97,12 @@ public class ToFile {
         return filename;
     }
 
+    /**
+     * Menuliskan rowString ke dalam file teks. File yang mana yang ditulisi akan
+     * dimintakan kepada pengguna.
+     * 
+     * @param rowStrings baris teks yang ditulis ke dalam file
+     */
     public static void writeToFile(String[] rowStrings) {
         String filename = getValidFilename();
 
