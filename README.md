@@ -1,4 +1,7 @@
-# Tucil 1 Strategi Algoritma <a href="https://github.com/Fatih20">13521060</a>
+# Tucil 1 Strategi Algoritma
+
+<a href="https://github.com/Fatih20">Fatih Nararya Rashadyfa Ilhamsyah </a>
+13521060
 
 ## Table of contents
 
@@ -7,7 +10,7 @@
 - <a href="#how-to-operate">Petunjuk Penggunaan</a>
 
 <h2 id="description">Deskripsi</h2>
-Tugas besar ini adalah program untuk memecahkan permainan 24 menggunakan algoritma <em>brute-force</em>. Berikut adalah <a href="doc/Algeo01-13521045.pdf">file laporan</a>.
+Tugas besar ini adalah program untuk memecahkan permainan 24 menggunakan algoritma <em>brute-force</em>. Berikut adalah <a href="doc/Tucil1_K01_13521060.pdf">file laporan</a>.
 
 <h2 id="how-to-run">Cara Menjalankan Program</h2>
 
