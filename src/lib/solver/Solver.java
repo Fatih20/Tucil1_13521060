@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import lib.io.ToKeyboard;
@@ -20,6 +19,7 @@ public class Solver {
 
     static private List<Operands> operandsMaker(List<String> givenCards) {
         HashMap<String, Double> cardValues = new HashMap<String, Double>();
+        cardValues.put("A", 1.0);
         cardValues.put("2", 2.0);
         cardValues.put("3", 3.0);
         cardValues.put("4", 4.0);
@@ -32,7 +32,6 @@ public class Solver {
         cardValues.put("J", 11.0);
         cardValues.put("Q", 12.0);
         cardValues.put("K", 13.0);
-        cardValues.put("A", 14.0);
 
         List<Double> translatedCards = new ArrayList<Double>();
 
@@ -80,46 +79,40 @@ public class Solver {
         return operatorPermutation;
     }
 
-    static private boolean checkIfDuplicate(List<Solution> solutions, Solution checkedSolution) {
-        // return false;
-        for (Solution solution : solutions) {
-            if (checkedSolution.isIdentical(solution)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    static public Set<String> solve(List<String> givenCards, double target) {
+        List<OperationOrder> operationOrderArray = Arrays.asList(OperationOrder.values());
 
-    static private List<Solution> checker(List<String> givenCards) {
-        OperationOrder[] operationOrderArray = OperationOrder.values();
-
-        List<Solution> possibleSolutions = new ArrayList<Solution>();
-        List<Solution> result = new ArrayList<Solution>();
+        Set<String> possibleSolutions = new HashSet<String>();
         // Set<String> result = new HashSet<String>();
 
+        // long startOPRPerm = System.currentTimeMillis();
         List<Operands> operandPermutation = operandsMaker(givenCards);
+        // long endOPRPerm = System.currentTimeMillis();
         List<Operators> operatorPermutation = operatorsMaker();
+        // long endOPPerm = System.currentTimeMillis();
 
         for (Operands operands : operandPermutation) {
             for (Operators operators : operatorPermutation) {
                 for (OperationOrder operationOrder : operationOrderArray) {
-                    possibleSolutions.add(new Solution(operands, operators, operationOrder));
+                    Solution possibleSolution = new Solution(operands, operators, operationOrder);
+                    if (possibleSolution.compareValue(target)) {
+                        possibleSolutions.add(possibleSolution.getString());
+                    }
                 }
             }
         }
 
-        for (Solution solution : possibleSolutions) {
-            if (solution.compareValue(24.0) && !checkIfDuplicate(result, solution)) {
-                result.add(solution);
-            }
-        }
+        // long endSolPerm = System.currentTimeMillis();
 
-        return result;
+        // ToKeyboard.printNumber(endOPRPerm - startOPRPerm, "Operands Permutation ");
+        // ToKeyboard.printNumber(endOPPerm - endOPRPerm, "Operator Permutation ");
+        // ToKeyboard.printNumber(endSolPerm - endOPPerm, "Solution Permutation ");
+
+        return possibleSolutions;
     }
 
-    static public List<String> solve(List<String> givenCards) {
-        List<Solution> solutions = checker(givenCards);
-        return solutions.stream().map(solution -> solution.getString()).collect(Collectors.toList());
+    static public Set<String> solve(List<String> givenCards) {
+        return solve(givenCards, 24.0);
     }
 
 }
