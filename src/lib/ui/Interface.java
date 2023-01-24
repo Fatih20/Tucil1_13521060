@@ -6,6 +6,7 @@ import java.util.Set;
 import lib.io.FromKeyboard;
 import lib.io.ToKeyboard;
 import lib.io.IOLib;
+import lib.io.ToFile;
 import lib.io.ValidationResult;
 import lib.solver.Solver;
 
@@ -41,6 +42,16 @@ public class Interface {
             for (String solution : result) {
                 ToKeyboard.printMessage(solution);
             }
+
+            ToKeyboard.printMessage("");
+
+            String saveToFile = FromKeyboard.readString("Ingin menyimpan solusi ke dalam file? (Y/n) ");
+
+            if (saveToFile.toUpperCase().compareTo("Y") == 0) {
+                ToKeyboard.printMessage("Masukkan nama file teks tujuan :");
+                ToFile.writeToFile(result.stream().toArray(String[]::new));
+            }
+
             ToKeyboard.printMessage("");
 
             // Ask if player would like to play again
