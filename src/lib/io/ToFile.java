@@ -77,7 +77,7 @@ public class ToFile {
      * @return
      */
     private static String getValidFilename() {
-        String filename = "../result/" + FromKeyboard.readString() + ".txt";
+        String filename = "../test/" + FromKeyboard.readString() + ".txt";
         CreateFileCondition createFileCondition = createFileSuccessful(filename);
         while (!createFileCondition.isSuccessful()) {
             String errorMessage = "";
